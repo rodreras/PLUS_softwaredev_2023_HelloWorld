@@ -4,6 +4,18 @@ import matplotlib.pyplot as plt
 
 
 def pca(img):
+
+  '''
+  Function: performs PCA analysis on raster files - satellite images
+
+  Args: 
+  img :: raster
+
+  Output: PCA values for each band
+
+  '''
+
+  
   #calculus dos autovetores e autovalores
   matrix = img.reshape(img.shape[0]*img.shape[1], img.shape[2])
 
@@ -36,6 +48,15 @@ def autovec_tab(auto_v, bands):
   return df
 
 def vis(array):
+
+  '''
+  Function: creates a 4 x 4 visualization for raster images
+
+  Args:
+
+  array :: raster transformed to an numpy array.
+
+  '''
   #plotting PCs 
   fig,axes = plt.subplots(2,2,figsize=(15,13),
                           sharex='all',
@@ -54,6 +75,20 @@ def vis(array):
   return plt.show()
 
 def expansion(img, percent_ini=2, percent_end=98):
+
+  '''
+  Function: sets tresholds for the bands visualization between 2 and 98%
+  in order to improve the visualization
+
+  Args:
+
+  img: raster band
+  percent_ini (default): 2
+  percent_end (defult): 98
+
+  Output: raster with expansion filter applied.
+
+  '''
     s = np.zeros_like(img)
     x,y = 0,255  
     w = np.percentile(img, percent_ini)
